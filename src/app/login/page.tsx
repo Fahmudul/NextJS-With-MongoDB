@@ -30,6 +30,18 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
+
+  // Forgot password logic
+  const handleForgotPassword = async () => {
+    try {
+      console.log(user);
+      const response = await axios.post("/api/users/forgotpassword", user);
+      console.log(response.data.message);
+      toast.success(response.data.message);
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
   useEffect(() => {
     if (user.email && user.password) {
       setButtonDisabled(false);
@@ -78,9 +90,13 @@ export default function LoginPage() {
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
+                <button
+                  type="button"
+                  onClick={() => handleForgotPassword()}
+                  className="label-text-alt link link-hover"
+                >
                   Forgot password?
-                </a>
+                </button>
               </label>
             </div>
             <div className="form-control mt-6">
