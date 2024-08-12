@@ -91,7 +91,11 @@ export default function SignupPage() {
               />
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary" onClick={onSignUp}>
+              <button
+                className="btn btn-primary"
+                type="button"
+                onClick={onSignUp}
+              >
                 {buttonDisabled ? "No signup" : "Sign Up"}
               </button>
               <Link

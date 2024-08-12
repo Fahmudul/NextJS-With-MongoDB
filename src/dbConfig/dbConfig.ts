@@ -12,7 +12,7 @@ export async function connect() {
     // The `on()` method is used to add an event listener for the "connected" event.
     // When the connection is established, the callback function is called.
     // In this case, it simply logs a success message to the console.
-    mongoose.connect(process.env.MONGO_URI!);
+    await mongoose.connect(process.env.MONGO_URI!);
     const connection = mongoose.connection;
     connection.on("connected", () => {
       console.log("MongoDB connected successfully");

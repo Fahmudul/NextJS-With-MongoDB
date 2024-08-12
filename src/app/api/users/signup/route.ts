@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 
 export async function POST(request: NextRequest) {
-  connect();
+  await connect();
   try {
     const reqBody = await request.json();
     const { username, email, password } = reqBody;
@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
       message: "User created successfully",
     });
   } catch (error: any) {
+    console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
