@@ -20,11 +20,9 @@ export default function LoginPage() {
     try {
       setLoading(true);
       const response = await axios.post("/api/users/login", user);
-      console.log("Login successful", response.data);
       toast.success("Login successful");
       router.push("/profile");
     } catch (error: any) {
-      console.log(error.message);
       toast.error(error.message);
     } finally {
       setLoading(false);
@@ -34,9 +32,7 @@ export default function LoginPage() {
   // Forgot password logic
   const handleForgotPassword = async () => {
     try {
-      console.log(user);
       const response = await axios.post("/api/users/forgotpassword", user);
-      console.log(response.data.message);
       toast.success(response.data.message);
     } catch (error: any) {
       console.log(error.message);

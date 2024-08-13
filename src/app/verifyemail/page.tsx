@@ -12,11 +12,9 @@ export default function VerifyEmailPage() {
       setVerified(true);
     } catch (error: any) {
       setError(true);
-      console.log(error.response.data);
     }
   };
   useEffect(() => {
-    console.log(window.location.search.split("=")[1]);
     setToken(window.location.search.split("=")[1]);
   }, []);
   useEffect(() => {

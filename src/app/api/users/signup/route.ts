@@ -9,7 +9,6 @@ export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
     const { username, email, password } = reqBody;
-    console.log("from line 12", reqBody);
 
     // check if user exists
     const user = await User.findOne({ email });
@@ -28,7 +27,6 @@ export async function POST(request: NextRequest) {
       password: hashedPassword,
     });
     const savedUser = await newUser.save();
-    console.log("from line 31", savedUser);
     await sendEmail({
       email,
       emailType: "VERIFY",
@@ -40,7 +38,6 @@ export async function POST(request: NextRequest) {
       message: "User created successfully",
     });
   } catch (error: any) {
-    console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

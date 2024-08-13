@@ -12,13 +12,11 @@ const ForgetPasswordPage = () => {
   }, []);
   const ResetPassWord = async () => {
     try {
-      console.log(userDetails, forgetPasswordToken);
       const response = await axios.post(
         "/api/users/forgetpasswordconfirmation",
         { userDetails, forgetPasswordToken }
       );
       toast.success(response.data.message);
-      console.log(response.data.message);
     } catch (error: any) {
       console.log(error.message);
     }

@@ -8,13 +8,11 @@ export async function POST(request: NextRequest) {
   try {
     const requestBody = await request.json();
     const { email } = requestBody;
-    console.log(email);
     // Find user by email
     const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
-    console.log(user);
     const response = await sendEmail({
       email,
       emailType: "RESET",
@@ -26,7 +24,6 @@ export async function POST(request: NextRequest) {
       message: "Forget password Email sent",
     });
   } catch (error: any) {
-    console.log(error.message);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

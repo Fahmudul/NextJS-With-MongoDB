@@ -39,7 +39,6 @@ export async function POST(request: NextRequest) {
     });
     return response;
   } catch (error: any) {
-    console.log("Something goes wrong with the db connection", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

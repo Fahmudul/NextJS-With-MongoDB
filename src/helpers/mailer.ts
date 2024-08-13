@@ -4,7 +4,6 @@ import bcryptjs from "bcryptjs";
 
 export const sendEmail = async ({ email, emailType, userId }: any) => {
   try {
-    console.log(email, userId);
     // create hashed token
     const hashedToken = await bcryptjs.hash(userId.toString(), 10);
     if (emailType === "VERIFY") {
@@ -22,8 +21,8 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
       auth: {
-        user: "41c67ef2f18fde",
-        pass: "ea732601b1df91",
+        user: process.env.MAILJS_ID,
+        pass: process.env.MAILJS_PASSWORD,
       },
     });
 
